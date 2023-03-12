@@ -41,7 +41,7 @@
         let resumable = new Resumable({
             target: '/uploadLargeFiles',
             query:{_token:'{{ csrf_token() }}'} ,// CSRF token
-            fileType: ['mp4', 'pdf'],
+            fileType: ['mp4'],
             chunkSize: 10*1024*1024, // default is 1*1024*1024, this should be less than your maximum limit in php.ini
             headers: {
                 'Accept' : 'application/json'
@@ -49,7 +49,7 @@
             testChunks: false,
             throttleProgressCallbacks: 1,
         });
-    
+        
         resumable.assignBrowse(browseFile[0]);
     
         resumable.on('fileAdded', function (file) { // trigger when file picked

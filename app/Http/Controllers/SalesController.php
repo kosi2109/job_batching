@@ -6,6 +6,7 @@ use App\Jobs\SalesCsvProcess;
 use App\Models\Sale;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -47,6 +48,7 @@ class SalesController extends Controller
     }
 
     public function uploadLargeFiles(Request $request) {
+        Logger($request->all());
         $receiver = new FileReceiver('file', $request, HandlerFactory::classFromRequest($request));
     
         if (!$receiver->isUploaded()) {
